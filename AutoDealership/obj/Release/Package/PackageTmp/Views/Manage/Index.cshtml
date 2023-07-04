@@ -1,0 +1,252 @@
+﻿@model AutoDealership.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+    ViewBag.ActiveNav = "ManageIndex";
+}
+
+
+
+
+
+
+
+<!--<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>External Logins:</dt>
+        <dd>
+            @Model.Logins.Count [
+            @Html.ActionLink("Manage", "ManageLogins") ]
+        </dd>-->
+        @*
+            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+             See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+             Uncomment the following block after you have set up two-factor authentication
+        *@
+
+        <!--<dt>Phone Number:</dt>
+        <dd>
+            @(Model.PhoneNumber ?? "None")
+            @if (Model.PhoneNumber != null)
+            {
+                <br />
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                }
+            }
+            else
+            {
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")</text>
+            }
+        </dd>
+
+        <dt>Two-Factor Authentication:</dt>
+        <dd>
+            <p>
+                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication.
+            </p>-->
+            @*@if (Model.TwoFactor)
+                {
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Enabled
+                        <input type="submit" value="Disable" class="btn btn-link" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Disabled
+                        <input type="submit" value="Enable" class="btn btn-link" />
+                        </text>
+                    }
+                }*@
+        <!--</dd>
+    </dl>
+</div>-->
+
+@*<div class="container">
+    <div class="col-md-4">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="#">My Profile</a></li>
+            <li role="presentation"><a href="#">Dashboard</a></li>
+            <li role="presentation"><a href="#">Log Out</a></li>
+        </ul>
+
+
+    </div>
+    <div class="col-md-8">
+        @if (Model.HasPassword)
+        {
+            <button class="btn btn-danger">@Html.ActionLink("Change your password", "ChangePassword")</button>
+        }
+        else
+        {
+            @Html.ActionLink("Create", "SetPassword")
+        }
+        <button class="btn btn-danger">@Html.ActionLink("List a vehicle", "Create", "Vehicle")</button>
+    </div>
+</div>*@
+
+@*@if (User.IsInRole("Administrator"))
+    {
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                List a vehicle
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+
+            </div>
+        </div>
+    }*@
+
+<div class="container-fluid" style="margin-left: -2em">
+
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark border-top border-secondary" style="width: 300px; min-height: 700px;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-4">User Management</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" id="manage-profile" class="nav-link text-white active" aria-current="page">
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="manage-dashboard" class="nav-link text-white">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="manage-log-out" class="nav-link text-white">
+                            Log out
+                        </a>
+                    </li>
+                    @*<li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                            Customers
+                        </a>
+                    </li>*@
+                </ul>
+                <hr>
+                <div>
+                    <strong>@User.Identity.Name</strong>
+
+                    @*<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>*@
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 mt-3">
+            <div id="manage-div">
+                @Html.Partial("_ManageUserPanel", Model)
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+
+            var logOutBtn = $("#manage-log-out");
+            var dashboardBtn = $("#manage-dashboard");
+            var profileBtn = $("#manage-profile");
+
+            dashboardBtn.click(function () {
+                var manageDiv = $("#manage-div");
+                @ViewBag.ActiveBtn = "dashboard";
+                profileBtn.removeClass("active");
+                dashboardBtn.addClass("active");
+                $.ajax({
+                    url: '/Manage/GetDashboardPanelAsync',
+                    type: 'GET',
+                    success: function (data) {
+                        var newDiv = document.createElement("div");
+                        newDiv.setAttribute("id", "manage-div");
+                        newDiv.innerHTML = data;
+                        manageDiv.replaceWith(newDiv);
+                        console.log(data);
+                    }
+                });
+            });
+
+            profileBtn.click(function () {
+                var manageDiv = $("#manage-div");
+                @ViewBag.ActiveBtn = "profile";
+                profileBtn.addClass("active");
+                dashboardBtn.removeClass("active");
+                $.ajax({
+                    url: '/Manage/GetUserPanelAsync',
+                    type: 'GET',
+                    success: function (data) {
+                        var newDiv = document.createElement("div");
+                        newDiv.setAttribute("id", "manage-div");
+                        newDiv.innerHTML = data;
+                        manageDiv.replaceWith(newDiv);
+                        console.log(data);
+                    }
+                });
+            });
+
+            logOutBtn.click(function () {
+                document.getElementById('logoutForm').submit();
+            });
+
+
+        });
+    </script>
+
+}
+

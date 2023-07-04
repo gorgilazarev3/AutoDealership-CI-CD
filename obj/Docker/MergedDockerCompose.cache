@@ -1,0 +1,44 @@
+name: dockercompose17639065126961278681
+services:
+  autodealership:
+    build:
+      context: C:\Users\Vase\Desktop\gorgi\AutoDealership-CI-CD\AutoDealership-CI-CD\AutoDealership
+      dockerfile: Dockerfile
+    image: autodealership
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 80
+      published: "80"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\Vase\Desktop\gorgi\AutoDealership-CI-CD\AutoDealership-CI-CD\AutoDealership
+      target: c:/inetpub/wwwroot
+      bind:
+        create_host_path: true
+  db:
+    environment:
+      ACCEPT_EULA: "Y"
+      sa_password: AutoDealershipDb3
+    image: octopusdeploy/mssql-server-windows-express
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 1433
+      published: "1433"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\Vase\Desktop\gorgi\AutoDealership-CI-CD\AutoDealership-CI-CD\db
+      target: c:/db
+      bind:
+        create_host_path: true
+networks:
+  default:
+    name: dockercompose17639065126961278681_default

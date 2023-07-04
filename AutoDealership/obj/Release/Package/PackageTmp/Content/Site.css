@@ -1,0 +1,358 @@
+﻿:root {
+    --my-orange: #ffc107;
+    --my-blue: #053361;
+}
+
+body {
+    padding-top: 50px;
+/*    padding-bottom: 20px;*/
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column */
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+.my-navbar {
+    /*background: rgb(2,0,36) !important;*/
+    /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(2,0,36,1) 86%, rgba(5,1,130,1) 100%) !important;*/
+    background: rgb(2,92,173) !important;
+    background: linear-gradient(90deg, rgba(2,92,173,1) 0%, rgba(5,39,90,1) 19%, rgba(5,39,90,1) 75%, rgba(2,92,173,1) 100%) !important;
+    color: white !important;
+}
+
+
+
+ul.my-navbar-text li a {
+    position: relative;
+    color: white !important;
+    text-transform: uppercase !important;
+}
+
+    ul.my-navbar-text li a:hover {
+        color: var(--my-orange) !important;
+        text-shadow: 0px 2px 0px 0px black;
+        font-weight: 500;
+        /*border-bottom: solid 2px var(--my-orange) !important;*/
+    }
+
+li.my-navbar-active a {
+    border-bottom: solid 2px var(--my-orange) !important;
+    font-weight: 500;
+    color: var(--my-orange) !important;
+    line-height: initial;
+}
+
+
+
+a#registerLink:hover {
+    color: white !important;
+}
+
+ul.my-navbar-text li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    margin-top: 5px;
+    background: var(--my-orange);
+    transition: all 250ms ease-in-out;
+}
+
+ul.my-navbar-text li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+a#profile-icon::after, ul.my-navbar-account-links li a::after, li.my-navbar-active a::after, li.my-navbar-active a:hover::after {
+    width: 0%;
+    height: 0;
+}
+
+/*.slider {
+    padding: 30px;
+    border-radius: 3px;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+}*/
+
+#header-search-filter {
+    background-image: url(https://images.hdqwalls.com/download/ultimate-supercars-k6-1920x1080.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 5em;
+}
+
+.slider {
+    width: fit-content;
+}
+
+.range-slider {
+    width: 200px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+
+    .range-slider .rangeValues {
+        display: block;
+        /*box-shadow: 0 0 20px rgba(0,139,253,0.25);*/
+        box-shadow: 0px 0 2px #055160;
+        padding: 20px;
+        font-size: 1em;
+        font-weight: 500;
+        margin-bottom: 35px;
+    }
+
+input[type=range] {
+    -webkit-appearance: none;
+    border: 1px solid white;
+    width: 200px;
+    position: absolute;
+    left: 0;
+}
+
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 200px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: #0273a0;
+        margin-top: -6px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+    }
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #ccc;
+        }
+
+/*div#corner-triangle {
+    display: block;*/
+/* width: 75%; */
+/*height: 3.5em;
+    border-style: solid;
+    border-width: 0 5em 3.5em 0;
+    border-color: transparent #ffc107 transparent transparent;
+    position: relative;
+    top: -1;*/
+/* right: 0; */
+/*color: white;
+    text-shadow: 0 0 25px 9px #fff;*/
+/* -webkit-filter: drop-shadow(0 1px 9px #000000); */
+/* filter: drop-shadow(0 1px 9px #000000); */
+/*left: -5em;
+    width: fit-content;
+}*/
+
+div#corner-triangle {
+    display: inline-block;
+    /* width: 75%; */
+    height: 3.5em;
+    border-style: solid;
+    border-width: 0 5em 3.5em 0;
+    border-color: transparent white transparent transparent;
+    position: relative;
+    /* top: -1em; */
+    /* right: 0; */
+    color: white;
+    text-shadow: 0 0 25px 9px #fff;
+    /* -webkit-filter: drop-shadow(0 1px 9px #000000); */
+    /* filter: drop-shadow(0 1px 9px #000000); */
+    left: -5em;
+    width: fit-content;
+}
+
+.carousel-item a.text-decoration-none {
+    color: var(--my-blue);
+}
+
+.carousel-item div.rounded:hover {
+    background-color: rgba(255, 184, 11, 0.09)
+}
+
+.my-blue-text-color {
+    color: var(--my-blue) !important;
+}
+
+.my-blue-background-color {
+    background-color: var(--my-blue) !important;
+}
+
+.my-orange-text-color {
+    color: var(--my-orange) !important;
+}
+
+.my-orange-background-color {
+    background-color: var(--my-orange) !important;
+}
+
+#inventory-header {
+    background-image: url("https://dealerinspire1.s3.amazonaws.com/JjS-QtB9qWTRpgqQPDs3%2B9E%3D/CDy2BvBgoiXPo024IA%3D%3D/Vm3pWw%3D%3D/h-8crRiwnY--PQ%3D%3D/header.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(5, 39, 90, 0.85);
+    background-blend-mode: multiply;
+    /*filter: grayscale(200%);*/
+}
+
+#contact-header, #about-header {
+    background-image: url("https://www.freewebheaders.com/wp-content/gallery/cars/porsche-911-silver-color-top-speed-car-web-header.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(5, 39, 90, 0.85);
+    background-blend-mode: multiply;
+    background-position: center;
+    /*filter: grayscale(200%);*/
+}
+
+#contact-header > div.p-5, #about-header > div.p-5, #inventory-header > div.p-5 {
+    width: fit-content;
+    margin: auto;
+    background-color: #00000047;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#best-features-div {
+    background-image: url("https://image-renderer.sinclairstoryline.com/prod/image-renderer/16x9/full/1015/center/80/9dd2c7f7-4d75-4358-a4cc-d982756d9379-large16x9_GettyImages1030960660.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(5, 39, 90, 0.5);
+    background-blend-mode: multiply;
+}
+
+.hr-lines {
+    position: relative;
+    max-width: 500px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+    .hr-lines:before {
+        content: " ";
+        height: 2px;
+        width: 130px;
+        background: lightgray;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: -2em;
+    }
+
+    .hr-lines:after {
+        content: " ";
+        height: 2px;
+        width: 130px;
+        background: lightgray;
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: -2em;
+    }
+
+.img-panel {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(5, 39, 90, 0.5);
+    background-position-y: bottom;
+    background-blend-mode: multiply;
+    cursor: pointer;
+    height: 15em;
+}
+
+.img-panel:hover {
+    background-color: rgba(5, 39, 90, 0.2);
+}
+
+#steps-div {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #f8f9faf7;
+    background-blend-mode: screen;
+    background-position-y: center;
+}
+
+#high-performance-div {
+    background-image: url(/Content/Images/high-perf.jpg);
+    background-position-y: center;
+    /*    background-size: contain;*/
+    background-repeat: no-repeat;
+    background-color: rgb(0 0 0 / 30%);
+    background-blend-mode: darken;
+}
+
+#most-freq-questions.accordion {
+    --bs-accordion-active-bg: white;
+    --bs-accordion-active-color: var(--my-blue);
+}
+
+a.dashboard-panel:hover {
+    box-shadow: -1px 1px 15px 0px rgba(95,95,95,0.76) !important;
+    -webkit-box-shadow: -1px 1px 15px 0px rgba(95,95,95,0.76) !important;
+    -moz-box-shadow: -1px 1px 15px 0px rgba(95,95,95,0.76) !important;
+}
+
+.logged-in-links a:hover {
+    color: var(--my-orange) !important;
+    text-shadow: 0px 2px 0px 0px black;
+    font-weight: 500;
+}
+
+.form-floating > label {
+    z-index: 1000;
+}
+
+.vehicle-card .card:hover {
+    cursor: pointer;
+    border: 1px solid var(--my-blue);
+}
+.vehicle-card-inner:hover {
+    pointer-events: auto;
+    box-shadow: 63px 0px 17px -3px rgba(0,0,0,0.22) inset, -63px 0px 17px -3px rgba(0,0,0,0.22) inset !important;
+    -webkit-box-shadow: 63px 0px 17px -3px rgba(0,0,0,0.22) inset, -63px 0px 17px -3px rgba(0,0,0,0.22) inset !important;
+    -moz-box-shadow: 63px 0px 17px -3px rgba(0,0,0,0.22) inset, -63px 0px 17px -3px rgba(0,0,0,0.22) inset !important;
+}
+
+#accordionExample.accordion {
+    --bs-accordion-active-bg: var(--my-blue);
+    --bs-accordion-active-color: white !important;
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    --bs-accordion-btn-bg: #0533611f;
+}
+

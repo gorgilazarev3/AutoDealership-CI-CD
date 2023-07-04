@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  autodealership:
+    image: ${DOCKER_REGISTRY-}autodealership
+    build:
+      context: .\AutoDealership
+      dockerfile: Dockerfile
+    ports:
+     - 80:80
+    volumes:
+     - .\AutoDealership:c:/inetpub/wwwroot
+  db:
+    image: octopusdeploy/mssql-server-windows-express
+    ports:
+     - 1433:1433
+    environment:
+     - ACCEPT_EULA=Y
+    env_file:
+     - ./.env
+    volumes:
+     - ./db:c:/db
+     #- ./mssql-data:C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA
