@@ -12,10 +12,10 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
-      -
-      	name: Build Docker Image on Windows and Push it to DockerHub
-      	uses: mr-smithers-excellent/docker-build-push@v6
-      	with:
+      - 
+        name: Build Docker Image on Windows and Push it to DockerHub
+    uses: mr-smithers-excellent/docker-build-push@v6
+    with:
           image: ${{ secrets.DOCKERHUB_USERNAME }}/autodealership:latest
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
