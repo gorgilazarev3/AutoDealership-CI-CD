@@ -4,12 +4,12 @@ services:
   autodealership:
     image: ${DOCKER_REGISTRY-}autodealership
     build:
-      context: .\AutoDealership
+      context: .
       dockerfile: Dockerfile
     ports:
      - 80:80
     volumes:
-     - .\AutoDealership:c:/inetpub/wwwroot
+     - .:c:/source
   db:
     image: octopusdeploy/mssql-server-windows-express
     ports:
