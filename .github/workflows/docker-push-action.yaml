@@ -12,7 +12,8 @@ jobs:
       - name: Build Docker Image on Windows and Push it to DockerHub
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: ${{ secrets.DOCKERHUB_USERNAME }}/autodealership:latest
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/autodealership
           registry: docker.io
+          tags: latest
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
