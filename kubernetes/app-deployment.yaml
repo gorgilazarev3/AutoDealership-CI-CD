@@ -1,0 +1,122 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autodealership-deploy
+  namespace: autodealership
+  labels:
+    app: auto-app
+spec:
+  selector:
+    matchLabels:
+      app:  auto-app
+  replicas: 3
+  minReadySeconds: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  auto-app
+    spec:
+      nodeSelector:
+        kubernetes.io/os: windows
+      containers:
+      - name: autodealership
+        image: gorgilazarev3/autodealership:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 250m
+            memory: 250Mi
+        # livenessProbe:
+        #   tcpSocket:
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 5
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   periodSeconds: 10
+        # readinessProbe:
+        #   httpGet:
+        #     path: /_status/healthz
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 2
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   periodSeconds: 10
+        livenessProbe:      # Used by deployment controller
+          httpGet:
+            path: /health
+            port: 80
+          successThreshold: 1
+          failureThreshold: 3
+          initialDelaySeconds: 180
+          periodSeconds: 30
+          timeoutSeconds: 10
+        readinessProbe:     # Used by Ingress/GCLB
+          httpGet:
+            path: /health
+            port: 80
+          successThreshold: 1
+          failureThreshold: 3
+          initialDelaySeconds: 180
+          periodSeconds: 30
+          timeoutSeconds: 10
+        env:
+        - name: ACCEPT_EULA
+          valueFrom:
+            configMapKeyRef:
+              name: autodealership-config
+              key: ACCEPT_EULA
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: autodealership-config
+              key: DB_HOST
+        - name: USER_ID
+          valueFrom:
+            secretKeyRef:
+              name: autodealership-secrets
+              key: USER_ID
+        - name: USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: autodealership-secrets
+              key: USER_PASSWORD
+        ports:
+        - containerPort: 80
+          name:  auto-app
+        volumeMounts:
+        - name: source
+          mountPath: /c/source
+      volumes:
+        - name: source
+          hostPath:
+            path: .
+      restartPolicy: Always
+---
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: autodealership-svc
+  namespace: autodealership
+spec:
+  selector:
+    app: auto-app
+  type: LoadBalancer
+  ports:
+  - name: autodealership-svc
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
+

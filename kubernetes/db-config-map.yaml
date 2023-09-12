@@ -1,0 +1,10 @@
+# https://kubernetes.io/docs/concepts/configuration/configmap/
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: db-config
+  namespace: autodealership
+data:
+  ACCEPT_EULA: "Y"
+  
+---

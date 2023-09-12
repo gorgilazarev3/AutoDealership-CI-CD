@@ -1,0 +1,11 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: autodealership-ing
+  namespace: autodealership
+spec:
+  defaultBackend:
+    service:
+      name: autodealership-svc
+      port:
+        number: 80
