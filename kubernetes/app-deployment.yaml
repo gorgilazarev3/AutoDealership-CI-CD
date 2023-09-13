@@ -27,7 +27,7 @@ spec:
       containers:
       - name: autodealership
         image: gorgilazarev3/autodealership:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 100m
