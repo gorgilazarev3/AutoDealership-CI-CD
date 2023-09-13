@@ -6,5 +6,4 @@ metadata:
   namespace: autodealership
 data:
   ACCEPT_EULA: "Y"
-  
----
+

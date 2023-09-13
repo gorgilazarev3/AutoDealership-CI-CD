@@ -14,11 +14,11 @@ spec:
         app: mssql
     spec:
       terminationGracePeriodSeconds: 30
-      securityContext:
-        fsGroup: 10001
+      nodeSelector:
+        kubernetes.io/os: windows
       containers:
       - name: mssql
-        image: mcr.microsoft.com/mssql/server:2019-latest
+        image: octopusdeploy/mssql-server-windows-express
         ports:
         - containerPort: 1433
         env:
@@ -29,33 +29,18 @@ spec:
             configMapKeyRef:
               name: db-config
               key: ACCEPT_EULA
-        - name: MSSQL_SA_PASSWORD
+        - name: sa_password
           valueFrom:
             secretKeyRef:
               name: db-secrets
               key: USER_PASSWORD
-        - name: MSSQL_DATA_DIR
-          value: /var/opt/mssql/mdf
-        - name: MSSQL_LOG_DIR
-          value: /var/opt/mssql/ldf
-          
         volumeMounts:
-        - name: mssql-base-volume
-          mountPath: /var/opt/mssql
-        - name: mssql-ldf-volume
-          mountPath: /var/opt/mssql/ldf
-        - name: mssql-mdf-volume
-          mountPath: /var/opt/mssql/mdf
+        - name: mssql-data
+          mountPath: c:\db
       volumes:
-      - name: mssql-base-volume
+      - name: mssql-data
         persistentVolumeClaim:
-          claimName: mssql-base-volume
-      - name: mssql-mdf-volume
-        persistentVolumeClaim:
-          claimName: mssql-mdf-volume
-      - name: mssql-ldf-volume
-        persistentVolumeClaim:
-          claimName: mssql-ldf-volume		  
+          claimName: mssql-data-pvc	  
 ---
 apiVersion: v1
 kind: Service

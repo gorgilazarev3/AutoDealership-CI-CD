@@ -12,6 +12,21 @@ parameters:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
+  name: autodealership-win-pvc
+  namespace: autodealership
+  # annotations:
+  #   volume.beta.kubernetes.io/storage-class: azure-disk
+spec:
+  storageClassName: google-cloud-provider
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
   name: mssql-data-pvc
   namespace: autodealership
   # annotations:
@@ -22,4 +37,4 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 8Gi

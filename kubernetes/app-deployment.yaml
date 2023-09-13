@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app:  auto-app
-  replicas: 3
+  replicas: 1
   minReadySeconds: 10
   strategy:
     rollingUpdate:
@@ -52,24 +52,24 @@ spec:
         #   successThreshold: 1
         #   failureThreshold: 3
         #   periodSeconds: 10
-        livenessProbe:      # Used by deployment controller
-          httpGet:
-            path: /health
-            port: 80
-          successThreshold: 1
-          failureThreshold: 3
-          initialDelaySeconds: 180
-          periodSeconds: 30
-          timeoutSeconds: 10
-        readinessProbe:     # Used by Ingress/GCLB
-          httpGet:
-            path: /health
-            port: 80
-          successThreshold: 1
-          failureThreshold: 3
-          initialDelaySeconds: 180
-          periodSeconds: 30
-          timeoutSeconds: 10
+        # livenessProbe:      # Used by deployment controller
+        #   httpGet:
+        #     path: /health
+        #     port: 80
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   initialDelaySeconds: 180
+        #   periodSeconds: 30
+        #   timeoutSeconds: 10
+        # readinessProbe:     # Used by Ingress/GCLB
+        #   httpGet:
+        #     path: /health
+        #     port: 80
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   initialDelaySeconds: 180
+        #   periodSeconds: 30
+        #   timeoutSeconds: 10
         env:
         - name: ACCEPT_EULA
           valueFrom:
@@ -96,11 +96,11 @@ spec:
           name:  auto-app
         volumeMounts:
         - name: source
-          mountPath: /c/source
+          mountPath: c:\source
       volumes:
-        - name: source
-          hostPath:
-            path: .
+      - name: source
+        persistentVolumeClaim:
+          claimName: autodealership-win-pvc
       restartPolicy: Always
 ---
 # https://kubernetes.io/docs/concepts/services-networking/service/
