@@ -51,6 +51,7 @@ jobs:
     #
     - name: Deploy to GKE
       run: |
+        kubectl apply -f kubernetes/namespace.yaml
         kubectl apply -f kubernetes/app-config-map.yaml
         kubectl apply -f kubernetes/app-secrets.yaml
         kubectl apply -f kubernetes/db-config-map.yaml
