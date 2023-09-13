@@ -6,4 +6,6 @@ metadata:
   namespace: autodealership
 data:
   ACCEPT_EULA: "Y"
+  MSSQL_DATA_DIR: /var/opt/mssql/mdf
+  MSSQL_LOG_DIR: /var/opt/mssql/ldf
 

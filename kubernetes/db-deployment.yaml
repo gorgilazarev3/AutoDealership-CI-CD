@@ -35,9 +35,15 @@ spec:
               name: db-secrets
               key: USER_PASSWORD
         - name: MSSQL_DATA_DIR
-          value: /var/opt/mssql/mdf
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: MSSQL_DATA_DIR
         - name: MSSQL_LOG_DIR
-          value: /var/opt/mssql/ldf
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: MSSQL_LOG_DIR
           
         volumeMounts:
         - name: mssql-base-volume

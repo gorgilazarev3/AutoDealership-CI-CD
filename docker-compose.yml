@@ -20,4 +20,4 @@ services:
      - ./.env
     volumes:
      - ./db:c:/db
-     #- ./mssql-data:C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA
+
