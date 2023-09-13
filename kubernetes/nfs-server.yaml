@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: nfs-server
+  template:
+    metadata:
+      labels:
+        role: nfs-server
+    spec:
+      containers:
+      - name: nfs-server
+        image: gcr.io/google_containers/volume-nfs:0.8
+        ports:
+          - name: nfs
+            containerPort: 2049
+          - name: mountd
+            containerPort: 20048
+          - name: rpcbind
+            containerPort: 111
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - mountPath: /exports
+            name: mypvc
+      volumes:
+        - name: mypvc
+          persistentVolumeClaim:
+            claimName: nfs-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nfs-server
+spec:
+  ports:
+    - name: nfs
+      port: 2049
+    - name: mountd
+      port: 20048
+    - name: rpcbind
+      port: 111
+  selector:
+    role: nfs-server
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv1
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: nfs-server.default.svc.cluster.local
+    path: "/"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: autodealership-win-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 3Gi
+  volumeName: nfs-pv1

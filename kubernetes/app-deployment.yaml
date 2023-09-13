@@ -10,8 +10,8 @@ spec:
   selector:
     matchLabels:
       app:  auto-app
-  replicas: 1
-  minReadySeconds: 10
+  replicas: 3
+  minReadySeconds: 30
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -24,10 +24,11 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/os: windows
+      terminationGracePeriodSeconds: 30
       containers:
       - name: autodealership
         image: gorgilazarev3/autodealership:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         resources:
           requests:
             cpu: 100m
@@ -67,9 +68,9 @@ spec:
         #     port: 80
         #   successThreshold: 1
         #   failureThreshold: 3
-        #   initialDelaySeconds: 180
+        #   initialDelaySeconds: 360
         #   periodSeconds: 30
-        #   timeoutSeconds: 10
+        #   timeoutSeconds: 60
         env:
         - name: ACCEPT_EULA
           valueFrom:
@@ -99,8 +100,11 @@ spec:
           mountPath: c:\source
       volumes:
       - name: source
-        persistentVolumeClaim:
-          claimName: autodealership-win-pvc
+        hostPath:
+          path: .
+          type: DirectoryOrCreate
+        # persistentVolumeClaim:
+        #   claimName: autodealership-win-pvc
       restartPolicy: Always
 ---
 # https://kubernetes.io/docs/concepts/services-networking/service/
@@ -109,6 +113,8 @@ kind: Service
 metadata:
   name: autodealership-svc
   namespace: autodealership
+  annotations:
+    cloud.google.com/neg: '{"ingress": false}' # Disable NEG
 spec:
   selector:
     app: auto-app

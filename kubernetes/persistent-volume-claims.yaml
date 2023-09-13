@@ -38,17 +38,3 @@ spec:
     requests:
       storage: 500Mi
 
----
-#persistent volume claim for the autodealership app
-
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: autodealership-pvc
-  namespace: autodealership
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi

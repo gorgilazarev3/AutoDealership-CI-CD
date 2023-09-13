@@ -4,6 +4,7 @@ metadata:
   name: autodealership-ing
   namespace: autodealership
 spec:
+  ingressClassName: "nginx"
   defaultBackend:
     service:
       name: autodealership-svc
