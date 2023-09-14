@@ -56,8 +56,6 @@ jobs:
         kubectl apply -f kubernetes/app-secrets.yaml
         kubectl apply -f kubernetes/db-config-map.yaml
         kubectl apply -f kubernetes/db-secrets.yaml
-        kubectl apply -f kubernetes/app-config-map.yaml
-        kubectl apply -f kubernetes/app-secrets.yaml
         kubectl apply -f kubernetes/persistent-volume-claims.yaml
         kubectl apply -f kubernetes/db-deployment.yaml
         kubectl apply -f kubernetes/app-deployment.yaml
