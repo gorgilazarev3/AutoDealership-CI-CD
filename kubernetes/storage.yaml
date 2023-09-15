@@ -21,6 +21,7 @@ spec:
     requests:
       storage: 10Gi
 ---
+#comment
 # kind: PersistentVolumeClaim
 # apiVersion: v1
 # metadata:
